@@ -1,4 +1,4 @@
-#include "stdTypes.h"
+#include "../lib/stdTypes.h"
 #ifndef CONFIG_H
 #define CONFIG_H
 

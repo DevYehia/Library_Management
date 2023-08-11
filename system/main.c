@@ -1,7 +1,7 @@
 #include <stdlib.h>
-#include "stdTypes.h"
+#include "../lib/stdTypes.h"
 #include "library.h"
-#include "utility.h"
+#include "../lib/utility.h"
 #include "stdbool.h"
 s32 main()
 {

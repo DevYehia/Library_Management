@@ -3,7 +3,7 @@
 #include "storage.h"
 #include "stdbool.h"
 #include "string.h"
-#include "utility.h"
+#include "../lib/utility.h"
 
 
 void initialize(){

@@ -1,5 +1,5 @@
 #include "stdbool.h"
-#include "stdTypes.h"
+#include "../lib/stdTypes.h"
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
