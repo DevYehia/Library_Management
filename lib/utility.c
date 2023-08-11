@@ -11,7 +11,6 @@ void safeInput(s8 inp [] , u32 maxLimit){
         inp[i] = c;
     }
     inp[i] = '\0';
-    fflush(stdin);
 }
 
 void red(){

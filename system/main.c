@@ -40,8 +40,8 @@ s32 main()
 
     white();
     printf("Your Choice: ");
-    scanf("%d",&choice);
-    fflush(stdin);
+    scanf(" %d",&choice);
+    getchar();
     printf("\n");
 
     if(choice == 4) //Log out selected

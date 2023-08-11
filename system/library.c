@@ -115,15 +115,14 @@ void addBook(){
         return;
     }
     printf("Enter an ID for your book: ");
-    scanf("%u",&ID);
-    fflush(stdin);
+    scanf(" %u",&ID);
     while(getBookIndex(ID) != -1){
         red();
         printf("ID already in the library\nEnter a unique ID: ");
         blue();
-        scanf("%u",&ID);
-        fflush(stdin);
+        scanf(" %u",&ID);
     }
+    getchar();
     printf("Enter the book name: ");
     safeInput(bookName,MAX_BOOK_NAME_LENGTH);
 
@@ -132,14 +131,15 @@ void addBook(){
 
 priceInput:
     printf("Enter the book price: ");
-    scanf("%f",&price);
-    fflush(stdin);
+    scanf(" %f",&price);
+
     if(price < 0){
         red();
         printf("Price cannot be negative\n");
         blue();
         goto priceInput;
     }
+    getchar();
     printf("\n");
     green();
     printf("Book Added Successfully!!\n\n");
@@ -153,8 +153,8 @@ priceInput:
 void deleteBook(){
     u32 ID;
     printf("Enter the ID of the book to be deleted: ");
-    scanf("%u",&ID);
-    fflush(stdin);
+    scanf(" %u",&ID);
+    getchar();
     s32 index = getBookIndex(ID);
     if(index == -1){
         printf("ID doesn't exist\n\n");
