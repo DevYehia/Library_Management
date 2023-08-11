@@ -11,7 +11,7 @@ s32 main()
         //Must be no less than six characters
         //Must not contain spaces
     }
-
+    
     initialize();
 
     printf("\nWelcome to your ");

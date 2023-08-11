@@ -1,16 +1,16 @@
+#include <stdlib.h>
 #include "library.h"
 #include "config.h"
 #include "storage.h"
 #include "stdbool.h"
 #include "string.h"
+#include "../lib/DL.h"
 #include "../lib/utility.h"
 
 
 void initialize(){
-    for(u32 i = 0 ; i < MAX_BOOKS ; i++){
-        IDs[i] = -1;
-        bookPrices[i] = -1;
-    }
+    books = (List *)malloc(sizeof(List));
+    createList(books);
 }
 
 bool setPassword(){
@@ -54,51 +54,19 @@ bool confirmPassword(){
 }
 
 
-s32 findEmptySlot(){
-    for(u32 i = 0 ; i < MAX_BOOKS ; i++){
-        if(IDs[i] == -1)
-            return i;
-    }
-    return -1;
-
-}
-
-s32 getBookIndex(u32 ID){
-    for(u32 i = 0 ; i < MAX_BOOKS ; i++){
-        if(ID == IDs[i]){
-            return i;
-        }
-    }
-    return -1;
-}
 
 void viewBooks(){
-    bool empty = true;
-    for(u32 i = 0 ; i < MAX_BOOKS ; i++){
-        if(IDs[i] != -1)
-        {
-            empty = false;
-            displayInfo(i);
-
-        }
-    }
-    if(empty){
+    if(books -> size == 0){
         red();
         printf("Library is empty!!");
     }
+    else{
+        printList(books);
+    }
      printf("\n\n");
-
 }
 
-void displayInfo(u32 bookIndex){
-    printf("-------------------------------------\n");
-    printf("Book Name: %s\n", bookNames[bookIndex]);
-    printf("Author Name: %s\n", authNames[bookIndex]);
-    printf("Book ID: %u\n", IDs[bookIndex]);
-    printf("Book Price: %.2f$\n", bookPrices[bookIndex]);
-    printf("-------------------------------------\n");
 
-}
 
 void addBook(){
 
@@ -106,17 +74,10 @@ void addBook(){
     s8 authName [MAX_AUTH_NAME_LENGTH];
     u32 ID;
     f32 price;
-    s32 slot = findEmptySlot();
 
-
-    if(slot == -1){
-        red();
-        printf("Library is full, can't add any more books!!\n\n");
-        return;
-    }
     printf("Enter an ID for your book: ");
     scanf(" %u",&ID);
-    while(getBookIndex(ID) != -1){
+    while(searchNode(books,ID)){
         red();
         printf("ID already in the library\nEnter a unique ID: ");
         blue();
@@ -144,10 +105,12 @@ priceInput:
     green();
     printf("Book Added Successfully!!\n\n");
 
-    strcpy(bookNames[slot] , bookName);
-    strcpy(authNames[slot] , authName);
-    IDs[slot] = ID;
-    bookPrices[slot] = price;
+    ListEntry* book = (ListEntry*)malloc(sizeof(ListEntry));
+    strcpy(book->bookName,bookName);
+    strcpy(book->authName,authName);
+    book->ID = ID;
+    book->bookPrice = price;
+    insertSortedNode(books,book); 
 }
 
 void deleteBook(){
@@ -155,15 +118,11 @@ void deleteBook(){
     printf("Enter the ID of the book to be deleted: ");
     scanf(" %u",&ID);
     getchar();
-    s32 index = getBookIndex(ID);
-    if(index == -1){
+    if(deleteNode(books,ID) == false){
         printf("ID doesn't exist\n\n");
         return;
     }
-    strcpy(bookNames[index] , "\0");
-    strcpy(authNames[index] , "\0");
-    IDs[index] = -1;
-    bookPrices[index] = -1;
+
     printf("Deleted Successfully\n\n");
 }
 
