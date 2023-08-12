@@ -7,11 +7,11 @@
 /****************************Data Type Declaration**************************************/
 
 typedef struct Book{
-
-    s8  bookName [MAX_BOOK_NAME_LENGTH+1]; //+1 due to the need of \0 at the end
-    s8  authName [MAX_AUTH_NAME_LENGTH+1]; //+1 due to the need of \0 at the end
     u32 ID;
     f32 bookPrice;
+    s8  bookName [MAX_BOOK_NAME_LENGTH+1]; //+1 due to the need of \0 at the end
+    s8  authName [MAX_AUTH_NAME_LENGTH+1]; //+1 due to the need of \0 at the end
+
 } 
  ListEntry;
 
@@ -32,7 +32,7 @@ typedef struct List
 // typedef enum 
 // {
 // 	false,
-// 	true
+// 	true,
 // }bool;
 
 /*******************************Macro Definition*****************************************/
@@ -43,7 +43,7 @@ void createList(List* pList);
 int listSize(List* pList);
 void insertSortedNode(List* pList,ListEntry* val);
 void printList(List* pList);
-bool deleteNode(List* pList,int ID);
+bool deleteNode(List* pList,u32 ID); //returns true if deleted successfully, otherwise false
 void clearList(List* pList);
 bool searchNode(List * pList,u32 ID);
 

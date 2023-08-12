@@ -7,12 +7,10 @@ s32 main()
 {
     while(setPassword() == 0){
         //keep asking user for password until format is matched
-        //Must have at least have one number
-        //Must be no less than six characters
-        //Must not contain spaces
+
     }
     
-    initialize();
+    initialize(); //create the linked list
 
     printf("\nWelcome to your ");
     magenta(); //functions to color text found in utility.h
@@ -41,7 +39,7 @@ s32 main()
     white();
     printf("Your Choice: ");
     scanf(" %d",&choice);
-    getchar();
+    getchar(); //to remove extra endLine
     printf("\n");
 
     if(choice == 4) //Log out selected

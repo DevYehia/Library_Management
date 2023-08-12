@@ -38,26 +38,26 @@ void insertSortedNode(List* pList,ListEntry* val){
   temp->next = NULL;
   temp->prev = NULL;
   
-  if(pList -> size == 0){
+  if(pList -> size == 0){ //empty list
     pList-> head = temp;
     pList -> tail = temp;
   }
   else{
     Node* ptr = pList -> head;    
-    while(ptr != NULL &&  val->ID > ptr -> data -> ID ){
+    while(ptr != NULL &&  val->ID > ptr -> data -> ID ){ //find the node with id greater than input ID or reach end of list
         ptr = ptr ->next;
     }
-    if(ptr == NULL){
+    if(ptr == NULL){ //insert at tail
         temp -> prev = pList -> tail;
         pList -> tail -> next = temp;
         pList -> tail = temp;
     }
-    else if(ptr == pList -> head){
+    else if(ptr == pList -> head){ //insert at head
         temp -> next = pList -> head;
         pList -> head -> prev = temp;
         pList -> head = temp;
     }
-    else{
+    else{ 
         ptr -> prev -> next = temp;
         temp -> prev = ptr -> prev;
         temp -> next = ptr;
@@ -91,7 +91,7 @@ void printList(List* pList)
 }
 
 
-bool deleteNode(List* pList,int ID)
+bool deleteNode(List* pList,u32 ID)
 {
   Node* temp = pList->head;
   while(temp != NULL && temp -> data -> ID < ID ){

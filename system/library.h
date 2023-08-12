@@ -4,17 +4,19 @@
 #define LIBRARY_H
 
 
-void initialize();     //initialize all arrays with default values
+void initialize();     //create the linked list
 bool setPassword();
-bool checkPassFormat();    //check if password matches desired format or not
+bool checkPassFormat();    //check if password matches desired format or not.
+/* Desired Format
+    //Must have at least have one number
+    //Must be no less than six characters
+    //Must not contain spaces
+*/
 bool confirmPassword();      //compare input password with stored password
-
-
-
-void displayInfo();
+void viewBooks();
 void addBook();
 void deleteBook();
-void viewBooks();
+
 
 
 #endif // LIBRARY_H
